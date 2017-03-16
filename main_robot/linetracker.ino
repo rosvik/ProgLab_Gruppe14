@@ -8,11 +8,8 @@
 #define FORWARD_SPEED 400
 #define REVERSE_DURATION 200 // ms
 #define TURN_DURATION 300 // ms
-ZumoMotors motors;
-Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 #define NUM_SENSORS 6
 unsigned int sensor_values[NUM_SENSORS];
-ZumoReflectanceSensorArray sensors;
 
 void lineTrackerLoop() {
    sensors.read(sensor_values);
