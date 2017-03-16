@@ -8,8 +8,6 @@ PLab_ZumoMotors plab_Motors;
 NewPing sonar(triggerPin, echoPin, maxDistance);
 NewServo myServo; 
 
-Pushbutton button(ZUMO_BUTTON); 
-
 int degreesServo = 0;
 int degreesStep = 10;
 
