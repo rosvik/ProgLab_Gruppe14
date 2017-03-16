@@ -4,8 +4,8 @@
 #include <SoftwareSerial.h>
 #include <PLabBTSerial.h>
 
-#define txPin 2  // Tx pin on Bluetooth unit
-#define rxPin 3  // Rx pin on Bluetooth unit
+#define txPin 4  // Tx pin on Bluetooth unit
+#define rxPin 5  // Rx pin on Bluetooth unit
 
 PLabBTSerial btSerial(txPin, rxPin);
 

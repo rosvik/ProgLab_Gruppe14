@@ -5,8 +5,8 @@
 #include <SoftwareSerial.h>
 #include <PLabBTSerial.h>
 
-#define txPinCon 2  // Tx pin on Bluetooth unit
-#define rxPinCon 3  // Rx pin on Bluetooth unit
+#define txPinCon 4  // Tx pin on Bluetooth unit
+#define rxPinCon 5  // Rx pin on Bluetooth unit
 
 char BTName[] = "BesteRoboten";
 char ATCommand[] = "AT+NAMEPLab_";
