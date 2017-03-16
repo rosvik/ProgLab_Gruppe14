@@ -1,15 +1,17 @@
 #include <ZumoMotors.h>
 #include <Pushbutton.h>
+#include <NewPing.h>
+#include <NewServo.h>
+#include <PLab_ZumoMotors.h>
+
 
 ZumoMotors motors;
-Pushbutton button(ZUMO_BUTTON);
 
 void setup() {
-  // put your setup code here, to run once:
-  // Sander tester Git
+  setupAttack();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  findAndAttack(18);
 
 }
