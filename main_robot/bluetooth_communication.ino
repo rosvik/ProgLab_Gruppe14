@@ -1,6 +1,3 @@
-/*
- */
-
 #include <SoftwareSerial.h>
 #include <PLabBTSerial.h>
 
@@ -10,26 +7,32 @@
 PLabBTSerial btSerial(txPin, rxPin);
 
 void bluetooth_communication_setup() {
-    //Serial.begin(9600);   // Open serial communication to Serial Monitor
     btSerial.begin(9600); // Open serial communication to Bluetooth unit
 }
 
 void bluetooth_communication_loop() {
+  
   while (btSerial.available()) { // If input available from Bluetooth unit
     char c = btSerial.read();    // Read character from from Bluetooth unit
     
-    btSerial.write("BTSERIAL");             // Write that character to Serial Monitor
-    btSerial.write(c);
+    btSerial.println("BTSERIAL");             // Write that character to Serial Monitor
+    btSerial.println(c);
     if(c == 'a'){
-        btSerial.write("BT: Ragemode activated!");
+        btSerial.println("BTSerial: BTSerial 'a' triggered");
+        Serial.println("Serial: BTSerial 'a' triggered");
     }
-  };
+    Serial.println(c);
+    btSerial.println(c);
+  }
+  
   while (Serial.available()) { // If input available from Serial Monitor
     char c = Serial.read();    // Read character from from Serial Monitor
     if(c == 'a'){
-        btSerial.write("Ragemode activated!");
+        btSerial.println("BTSerial: Serial 'a' triggered");
+        Serial.println("Serial: Serial 'a' triggered");
     }
-    btSerial.write(c);         // Write that character to Bluetooth unit
+    Serial.println(c);
+    btSerial.println(c);
   };
 }
 
