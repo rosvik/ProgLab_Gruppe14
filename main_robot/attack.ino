@@ -3,31 +3,33 @@ const int triggerPin = A4;
 const int maxDistance = 50;
 
 const int servoPin = 6;
-
+int speed = 400;
+bool running = false;
 PLab_ZumoMotors plab_Motors;
 NewPing sonar(triggerPin, echoPin, maxDistance);
 NewServo myServo; 
 
-int degreesServo = 0;
-int degreesStep = 10;
+int offset = -55;
+int degreesServo = 90;
+int degreesStep = 5;
 
 void setupAttack() {
-  Serial.begin(9600);
   myServo.attach(servoPin); 
-  myServo.write(90);
-  button.waitForButton(); // start when button pressed
+  myServo.write(degreesServo + offset);
 }
 
 void stepServo() {
    degreesServo = degreesServo + degreesStep;
-   if (degreesServo > 160) {
+   if (degreesServo > 180) {
        degreesStep = -degreesStep;
-       degreesServo = 160;
-   } else if (degreesServo < 0) {
+       degreesServo = 180;
+   } else if (degreesServo < 60) {
        degreesStep = -degreesStep;
-       degreesServo = 20;
-   } 
-   myServo.write(degreesServo);
+       degreesServo = 60;
+   }
+   //plab_Motors.turnRight(speed, degreesStep);
+   
+  // myServo.write(degreesServo + offset);
 }
 
 float sonarDistance() {
@@ -39,33 +41,25 @@ float sonarDistance() {
    return distance;
 }
 
-int speed = 400;
-int findAndAttack(int tries) {
-   int dir = 0;
-   int dist = 999;
-   for(int i = tries;i>0; i--){
-     stepServo();
-     int distance = sonarDistance();
-     if(distance < dist && distance > 0.5 && distance < 50){
-       dir = degreesServo;
-       dist = distance;
-     }
-   }
-   if(dist != 999){
-        if(degreesServo < 90){
-          plab_Motors.turnRight(400, abs(dir));
-        }else {
-           plab_Motors.turnLeft(400, abs(90-dir));
-        }
-        
+void findAndAttack() {
+   int distance = sonarDistance();
+     if(distance > 0 && distance < 70){
         motors.setSpeeds(speed,speed);
-        return dir;
-       
+     running = true;
+     return;
    }
-   
-   
-   plab_Motors.turnLeft(400, 90);
-   return 360;
+ //  plab_Motors.turnRight(speed, degreesStep);
+   if(running){
+        if(random(3) == 2) 
+          motors.setSpeeds(400,50);
+        else if(random(1,3) == 1) 
+          motors.setSpeeds(400,200);      
+        else 
+          motors.setSpeeds(50,400);    
+   }
+   running = false;
+   return;
+
 }
 
 

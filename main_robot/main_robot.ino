@@ -11,12 +11,17 @@ Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
 ZumoReflectanceSensorArray sensors;
 
 void setup() {
+  Serial.begin(9600);
   bluetooth_communication_setup();
   initSensors();
   setupAttack();
+  button.waitForButton();
 }
 void loop() {
-  findAndAttack(1);
   bluetooth_communication_loop();  
-  lineTrackerLoop();
+  if (!lineTrackerLoop()) {
+    findAndAttack();
+  } else {
+    //delay(0);
+  }
 }
