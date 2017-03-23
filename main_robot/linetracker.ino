@@ -12,8 +12,7 @@
 unsigned int sensor_values[NUM_SENSORS];
 
 bool lineTrackerLoop() {
-  Serial.print("debug");
-   sensors.read(sensor_values);
+  sensors.read(sensor_values);
   if (sensor_values[0] < QTR_THRESHOLD)
   {
   // if leftmost sensor detects line, reverse and turn to the right

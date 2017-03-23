@@ -21,7 +21,5 @@ void loop() {
   bluetooth_communication_loop();  
   if (!lineTrackerLoop()) {
     findAndAttack();
-  } else {
-    //delay(0);
   }
 }

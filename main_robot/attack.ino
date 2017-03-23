@@ -27,18 +27,13 @@ void stepServo() {
        degreesStep = -degreesStep;
        degreesServo = 60;
    }
-   //plab_Motors.turnRight(speed, degreesStep);
-   
-  // myServo.write(degreesServo + offset);
 }
 
 float sonarDistance() {
   // Gjør ett ping, og beregn avstanden
   unsigned int time = sonar.ping();
-  float distance = sonar.convert_cm(time);
-  Serial.println(distance);
-  
-   return distance;
+  float distance = sonar.convert_cm(time);  
+  return distance;
 }
 
 void findAndAttack() {
@@ -48,7 +43,6 @@ void findAndAttack() {
      running = true;
      return;
    }
- //  plab_Motors.turnRight(speed, degreesStep);
    if(running){
         if(random(3) == 2) 
           motors.setSpeeds(400,50);
