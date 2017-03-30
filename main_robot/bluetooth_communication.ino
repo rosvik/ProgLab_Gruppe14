@@ -21,7 +21,13 @@ void bluetooth_communication_loop() {
     btSerial.write("BTSERIAL");             // Write that character to Serial Monitor
     btSerial.write(c);
     if(c == 'a'){
-        btSerial.write("BT: Ragemode activated!");
+
+      if(speedMode == 400) {
+        speedMode = 50;
+      } else {
+        speedMode = 400;
+        speed = speedMode;
+      }
     }
   };
   while (Serial.available()) { // If input available from Serial Monitor

@@ -3,7 +3,6 @@ const int triggerPin = A4;
 const int maxDistance = 50;
 
 const int servoPin = 6;
-int speed = 400;
 bool running = false;
 PLab_ZumoMotors plab_Motors;
 NewPing sonar(triggerPin, echoPin, maxDistance);
@@ -49,7 +48,7 @@ void findAndAttack() {
         else if(random(1,3) == 1) 
           motors.setSpeeds(400,200);      
         else 
-          motors.setSpeeds(50,400);    
+          motors.setSpeeds(50,400);
    }
    running = false;
    return;
