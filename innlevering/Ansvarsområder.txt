@@ -1,0 +1,6 @@
+Ansvarsområder:
+
+Sander: Defence + Fritzing
+Morten: Linetracker
+Johannes: Bluetooth Processing
+Jon: Attack
